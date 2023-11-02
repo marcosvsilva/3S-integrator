@@ -1,11 +1,21 @@
-import express from 'express';
-const app = express();
-const port = 3000;
+import express, { Express } from 'express';
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+import routes from './routes';
 
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+/**
+ * Express
+ */
+
+const app: Express = express();
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+/**
+ * Routes
+ */
+
+app.use(routes);
+
+export default app;
